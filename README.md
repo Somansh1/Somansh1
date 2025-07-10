@@ -34,7 +34,6 @@ Currently deepening my journey in technology and innovation, with a passion for 
 
 ## 📊 GitHub Stats
 
-![Somansh1's GitHub Stats](https://github-readme-stats.vercel.app/api?username=Somansh1&show_icons=true&theme=radical)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Somansh1&layout=compact&theme=radical)
 
 ---
