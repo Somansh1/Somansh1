@@ -6,14 +6,14 @@ Currently deepening my journey in technology and innovation, with a passion for 
 ## 🚀 Skills & Interests
 
 - **Languages & Tools:**  
-  ![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=python) (Main)  
-  ![C](https://img.shields.io/badge/-C-black?style=flat-square&logo=c)  
-  ![Java](https://img.shields.io/badge/-Java-black?style=flat-square&logo=java)  
-  ![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)  
-  ![Linux](https://img.shields.io/badge/-Linux-black?style=flat-square&logo=linux)  
-  ![Bash](https://img.shields.io/badge/-Bash-black?style=flat-square&logo=gnubash)  
-  ![Machine Learning](https://img.shields.io/badge/-Machine%20Learning-black?style=flat-square&logo=scikit-learn)  
-  ![Deep Learning](https://img.shields.io/badge/-Deep%20Learning-black?style=flat-square&logo=tensorflow)  
+  Python
+  C
+  Java
+  JavaScript  
+  Linux
+  Bash
+  Machine Learning
+  Deep Learning 
 
 - **Special Focus:**  
   - Python programming (primary language)
