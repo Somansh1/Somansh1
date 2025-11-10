@@ -6,13 +6,13 @@ Currently deepening my journey in technology and innovation, with a passion for 
 ## Skills & Interests
 
 - **Languages & Tools:**  
-  Python
-  C
-  Java
-  JavaScript  
-  Linux
-  Bash
-  Machine Learning
+  Python |
+  C |
+  Java |
+  JavaScript |  
+  Linux |
+  Bash |
+  Machine Learning |
   Deep Learning 
 
 - **Special Focus:**  
