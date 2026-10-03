@@ -43,4 +43,4 @@ I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2
 
 ## Away from the keyboard
 
-Astrophotography, regular photography, and games.
+Astrophotography, Chess, and games.
