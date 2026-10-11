@@ -22,7 +22,8 @@ jobs:
       ISSUE_USER: ${{ github.event.issue.user.login }}
       ISSUE_DATE: ${{ github.event.issue.created_at }}
       ISSUE_NUMBER: ${{ github.event.issue.number }}
-      RESULT_FILE: ${{ runner.temp }}/chess-result.md
+      # The runner context is not available in job-level env, so this is a fixed path outside the checkout.
+      RESULT_FILE: /tmp/chess-result.md
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add chess/state.json chess/fragment.md assets/chess-board.svg README.md
+          git add chess assets/chess-board.svg assets/chess-history.svg assets/chess README.md
           git commit -m "chess: ${SAN} by @${ISSUE_USER}"
           git pull --rebase || exit 1
           git push || { git pull --rebase && git push; }
