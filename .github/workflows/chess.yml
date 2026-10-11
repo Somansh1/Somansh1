@@ -1,0 +1,53 @@
+name: chess
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: chess
+  cancel-in-progress: false
+
+jobs:
+  move:
+    if: startsWith(github.event.issue.title, 'chess|move|')
+    runs-on: ubuntu-latest
+    env:
+      # Issue fields only ever travel through env, never through ${{ }} inside run scripts.
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      ISSUE_USER: ${{ github.event.issue.user.login }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      RESULT_FILE: ${{ runner.temp }}/chess-result.md
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r chess/requirements.txt
+      - id: play
+        run: python chess/game.py from-issue
+      - name: Commit and push
+        if: steps.play.outputs.ok == 'true'
+        env:
+          SAN: ${{ steps.play.outputs.san }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chess/state.json chess/fragment.md assets/chess-board.svg README.md
+          git commit -m "chess: ${SAN} by @${ISSUE_USER}"
+          git pull --rebase || exit 1
+          git push || { git pull --rebase && git push; }
+      - name: Reply and close
+        if: always()
+        run: |
+          if [ -f "$RESULT_FILE" ]; then
+            gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file "$RESULT_FILE"
+          else
+            gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body "Something went wrong playing that move. Please try again."
+          fi
+          gh issue close "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
