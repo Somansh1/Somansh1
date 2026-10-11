@@ -68,13 +68,12 @@ I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2
 **Secretary, IEEE Computer Society (UPES)** · Mar 2026 to present
 
 <!-- chess:start -->
-
 ## Your move
 
 This board is live. Pick a move below; it opens a pre-filled issue, and a GitHub Action plays it and redraws the board in about a minute.
 
 <p align="center">
-  <img src="./assets/chess-board.svg" width="420" alt="Chess board, game 1, move 1, white to move">
+  <img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game 1, move 1, white to move">
 </p>
 
 Anyone can move for whichever side is to play. Right now it is white's turn.
@@ -96,11 +95,13 @@ Anyone can move for whichever side is to play. Right now it is white's turn.
 
 </details>
 
+<p align="center">
+  <img src="./assets/chess-history.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
+</p>
+
 <details><summary>Recent moves</summary>
 
 - No moves yet in this game.
-
-Finished games: 0 (white won 0, black won 0, drawn 0). Game 1 is in progress.
 
 </details>
 <!-- chess:end -->

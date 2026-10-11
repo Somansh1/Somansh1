@@ -20,6 +20,7 @@ jobs:
       # Issue fields only ever travel through env, never through ${{ }} inside run scripts.
       ISSUE_TITLE: ${{ github.event.issue.title }}
       ISSUE_USER: ${{ github.event.issue.user.login }}
+      ISSUE_DATE: ${{ github.event.issue.created_at }}
       ISSUE_NUMBER: ${{ github.event.issue.number }}
       RESULT_FILE: ${{ runner.temp }}/chess-result.md
       GH_TOKEN: ${{ github.token }}

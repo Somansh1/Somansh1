@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="120" viewBox="0 0 1280 120" role="img" aria-labelledby="t">
+<title id="t">No finished chess games yet</title>
+<rect width="1280" height="120" rx="14" fill="#0c0c0e"/>
+<rect x=".5" y=".5" width="1279" height="119" rx="14" fill="none" stroke="#2c2b2a"/>
+<text x="640" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28" fill="#9c988c" text-anchor="middle">NO FINISHED GAMES YET · GAME 1 IN PROGRESS</text>
+</svg>

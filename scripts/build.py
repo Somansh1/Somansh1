@@ -22,10 +22,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(ROOT, "assets")
 LOGIN = "Somansh1"
 
-SKY0, SKY1, HAZE = "#0a0f24", "#141b3d", "#1d2550"
-CREAM, DIM, AMBER = "#f4eedd", "#8f96b8", "#ffd43b"
-CORAL, TEAL, HAIR = "#ff5a45", "#19b5a5", "#2a3263"
+SKY0, SKY1, HAZE = "#0c0c0e", "#151517", "#3a2413"
+CREAM, DIM, AMBER = "#f4eedd", "#9c988c", "#ffd43b"
+CORAL, TEAL, HAIR = "#ff5a45", "#19b5a5", "#2c2b2a"
 BLUE, WARM = "#a9c4ff", "#ffd9a0"
+PINK, GREEN, GOLD = "#ff7ab6", "#8fd44f", "#e8c27a"
+INK, INKDIM, VERM, PARCH, RULE = "#2b2118", "#7a6a55", "#c8401f", "#efe6d0", "#b8a98a"
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 SANS = "ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
 
@@ -275,7 +277,7 @@ def telescope(x, y, fill):
 def hero():
     R = random.Random(11)
     PX, PY = 880, 210
-    wpick = [CREAM] * 11 + [BLUE] * 2 + [WARM] * 2
+    wpick = [CREAM] * 11 + [WARM] * 4 + [BLUE]
     arcs = []
     for _ in range(175):
         r = 16 + 900 * R.random() ** 1.2
@@ -298,21 +300,21 @@ def hero():
     r_front = ridge(476, 22, 5.9)
     tx = 410
     ty = ridge_y(r_mid, tx)
-    pines = "".join(pine(x, ridge_y(r_front, x) + 3, h, "#04060e")
+    pines = "".join(pine(x, ridge_y(r_front, x) + 3, h, "#070605")
                     for x, h in [(60, 30), (82, 22), (190, 26), (231, 34), (262, 24), (690, 28), (722, 36), (748, 24),
                                  (1038, 30), (1066, 40), (1100, 28), (1184, 34), (1214, 26), (1250, 36)])
-    pines += "".join(pine(x, ridge_y(r_mid, x) + 3, h, "#0b1030") for x, h in [(540, 18), (560, 24), (1130, 20), (880, 16)])
+    pines += "".join(pine(x, ridge_y(r_mid, x) + 3, h, "#110e0c") for x, h in [(540, 18), (560, 24), (1130, 20), (880, 16)])
     star_dust = specks(R, 170, 0, 0, 1280, 400, tw=0)
     tw_dust = specks(R, 9, 0, 0, 1280, 330, rmin=.9, rmax=1.5, op0=.8, op1=.9, tw=9)
     defs = ('<linearGradient id="scrim" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="%s" stop-opacity=".82"/>'
             '<stop offset=".5" stop-color="%s" stop-opacity=".45"/><stop offset=".72" stop-color="%s" stop-opacity="0"/></linearGradient>'
-            '<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s" stop-opacity="0"/>'
-            '<stop offset="1" stop-color="%s" stop-opacity=".95"/></linearGradient>'
+            '<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1c12" stop-opacity="0"/>'
+            '<stop offset="1" stop-color="%s" stop-opacity="1"/></linearGradient>'
             '<radialGradient id="pole"><stop offset="0" stop-color="%s" stop-opacity=".26"/><stop offset="1" stop-color="%s" stop-opacity="0"/></radialGradient>'
             '<linearGradient id="met" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="%s" stop-opacity="0"/>'
             '<stop offset="1" stop-color="%s"/></linearGradient>'
             '<filter id="bl" x="-30%%" y="-60%%" width="160%%" height="220%%"><feGaussianBlur stdDeviation="46"/></filter>'
-            % (SKY0, SKY0, SKY0, HAZE, HAZE, AMBER, AMBER, CREAM, CREAM))
+            % (SKY0, SKY0, SKY0, HAZE, AMBER, AMBER, CREAM, CREAM))
     css = (SPIN_CSS + ".rot{transform-origin:%dpx %dpx}.mt{opacity:0}" % (PX, PY) + TWINKLE_CSS
            + motion(".rot{animation:rspin 240s linear infinite}"
                     "@keyframes mt{0%{opacity:0;transform:translate(0,0)}1.5%{opacity:1}6%{opacity:0;transform:translate(250px,120px)}100%{opacity:0;transform:translate(250px,120px)}}"
@@ -320,7 +322,7 @@ def hero():
                     "@keyframes po{0%,100%{opacity:.5}50%{opacity:1}}.po{animation:po 5s ease-in-out infinite}"))
     f = face("r")
     body = (
-        '<ellipse cx="620" cy="190" rx="520" ry="60" fill="#3a4a96" opacity=".22" filter="url(#bl)" transform="rotate(-18 620 190)"/>'
+        '<ellipse cx="620" cy="190" rx="520" ry="60" fill="#8a7a66" opacity=".10" filter="url(#bl)" transform="rotate(-18 620 190)"/>'
         + star_dust + tw_dust +
         '<circle cx="%d" cy="%d" r="120" fill="url(#pole)"/>' % (PX, PY) +
         '<g class="rot" fill="none" stroke-linecap="round">%s</g>' % "".join(trails) +
@@ -328,16 +330,16 @@ def hero():
         '<circle cx="%d" cy="%d" r="3.4" fill="%s"/>' % (PX, PY, AMBER) +
         star4(PX, PY, 17, AMBER, .12) +
         '<g class="mt"><path d="M900 40L1010 92" stroke="url(#met)" stroke-width="2.4" stroke-linecap="round"/></g>'
-        '<rect y="300" width="1280" height="220" fill="url(#haze)"/>'
+        '<rect y="250" width="1280" height="270" fill="url(#haze)"/>'
         '<rect width="1280" height="520" fill="url(#scrim)"/>'
-        '<path d="%s" fill="#1a2148"/>' % ridge_path(r_back) +
-        '<path d="%s" fill="#0d1233"/>' % ridge_path(r_mid) +
-        '<g transform="translate(%s %s) scale(1.3) translate(%s %s)">' % (n(tx), n(ty + 2), n(-tx), n(-ty - 2)) + telescope(tx, ty + 2, "#04060e") + "</g>" +
-        '<path d="%s" fill="#05070f"/>' % ridge_path(r_front) + pines +
+        '<path d="%s" fill="#241b15"/>' % ridge_path(r_back) +
+        '<path d="%s" fill="#15110e"/>' % ridge_path(r_mid) +
+        '<g transform="translate(%s %s) scale(1.3) translate(%s %s)">' % (n(tx), n(ty + 2), n(-tx), n(-ty - 2)) + telescope(tx, ty + 2, "#070605") + "</g>" +
+        '<path d="%s" fill="#070605"/>' % ridge_path(r_front) + pines +
         mono(64, 96, "OBSERVATORY LOG / 30.32°N 78.03°E / DEHRADUN", 20, DIM, ls=2.4) +
         text_path("Somansh Goel", 108, 60, 206) +
-        text_path("builds software that ships,", 34, 64, 262, italic=True, fill="#c9cde0") +
-        text_path("then finds out how AI systems break.", 34, 64, 304, italic=True, fill="#c9cde0") +
+        text_path("builds software that ships,", 34, 64, 262, italic=True, fill="#d6d1c4") +
+        text_path("then finds out how AI systems break.", 34, 64, 304, italic=True, fill="#d6d1c4") +
         mono(64, 494, "SOFTWARE ENGINEER · AI/ML · LLM RED-TEAMING", 20, CREAM, ls=2.4, extra=' opacity=".85"'))
     return svg(1280, 520, body, "Somansh Goel, observatory log",
                "A long-exposure star-trail sky over Himalayan foothills with a telescope on a ridge. "
@@ -350,6 +352,7 @@ def star_radius(c, cap):
 
 
 def sky(cal):
+    CREAM, DIM, HAIR, SKY0, AMBER = INK, INKDIM, RULE, PARCH, VERM  # inverted: ink on parchment
     days = []
     for w in cal["weeks"]:
         for d in w["contributionDays"]:
@@ -375,7 +378,7 @@ def sky(cal):
     topset = set(top)
     bright = set(sorted(range(len(days)), key=lambda i: (-days[i][1], days[i][0]))[:9])
 
-    g = ['<circle cx="%d" cy="%d" r="%d" fill="#0c1230" stroke="%s"/>' % (cx, cy, RD, HAIR)]
+    g = ['<circle cx="%d" cy="%d" r="%d" fill="#f5eddb" stroke="%s"/>' % (cx, cy, RD, HAIR)]
     for k in range(7):
         g.append('<circle cx="%d" cy="%d" r="%s" fill="none" stroke="%s" opacity="%s"/>'
                  % (cx, cy, n(R0 + k * step), HAIR, "1" if k in (0, 6) else ".6"))
@@ -403,7 +406,7 @@ def sky(cal):
     g.append('<path d="%s" stroke="%s" fill="none" opacity=".75"/>' % ("".join(rays), HAIR))
     g += labels
     # silent days
-    g.append('<g fill="%s" opacity=".3">%s</g>' % (DIM, "".join(
+    g.append('<g fill="%s" opacity=".45">%s</g>' % (DIM, "".join(
         '<circle cx="%s" cy="%s" r=".9"/>' % tuple(n(v) for v in pos(i, d)) for i, (d, c) in enumerate(days) if c == 0)))
     # constellations: 5+ day streaks
     lines, run = [], []
@@ -422,7 +425,7 @@ def sky(cal):
                 if len(seg) > 1:
                     lines.append("M" + "L".join("%s %s" % tuple(n(v) for v in pos(k, days[k][0])) for k in seg))
             run = []
-    g.append('<path d="%s" stroke="%s" stroke-width="1.1" fill="none" opacity=".4"/>' % ("".join(lines), CREAM))
+    g.append('<path d="%s" stroke="%s" stroke-width=".9" fill="none" opacity=".55"/>' % ("".join(lines), CREAM))
     # stars
     halos, dots, spikes, twink, tags = [], [], [], [], []
     for i, (d, c) in enumerate(days):
@@ -465,7 +468,7 @@ def sky(cal):
         wun = text_width(unit, 26, True) + 10 if unit else 0
         if wbig + wun > W:
             size = size * (W - wun) / wbig
-        out = mono(x, y, label, 20, DIM, ls=1.2) + text_path(big, size, x, y + 52)
+        out = mono(x, y, label, 20, DIM, ls=1.2) + text_path(big, size, x, y + 52, fill=CREAM)
         if unit:
             out += text_path(unit, 26, x + text_width(big, size) + 10, y + 52, italic=True, fill=DIM)
         return out + mono(x, y + 84, sub, 20, DIM)
@@ -474,28 +477,31 @@ def sky(cal):
     cu = S["current"]
     rng = lambda a, b: ("%s TO %s" % (fmt(a), fmt(b))) if a != b else fmt(a)
     right = (
-        mono(X, 62, "CONTRIBUTIONS · LAST %d WEEKS" % nw, 20, DIM, ls=1.2)
-        + text_path("{:,}".format(S["total"]), 124, X - 4, 180)
-        + '<path d="M%d 208H1240" stroke="%s"/>' % (X, HAIR)
-        + cell(X, 238, "LONGEST STREAK", str(lo[0]), "days", rng(lo[1], lo[2]) if lo[1] else "NONE")
-        + cell(X2, 238, "ACTIVE DAYS", str(S["active"]), "days", "OF %d DAYS CHARTED" % S["ndays"])
-        + cell(X, 362, "BUSIEST DAY", str(S["busiest"][0]), "in a day", fmt(S["busiest"][1]))
-        + cell(X2, 362, "BUSIEST WEEKDAY", S["weekday"][0], "", "%d IN ALL" % S["weekday"][1])
-        + '<path d="M%d 466H1240" stroke="%s"/>' % (X, HAIR)
-        + mono(X, 496, "MAGNITUDE", 20, DIM, ls=1.2))
+        mono(X, 56, "CONTRIBUTIONS · LAST %d WEEKS" % nw, 20, DIM, ls=1.2)
+        + text_path("{:,}".format(S["total"]), 124, X - 4, 172, fill=CREAM)
+        + '<path d="M%d 200H1240" stroke="%s"/>' % (X, HAIR)
+        + cell(X, 226, "LONGEST STREAK", str(lo[0]), "days", rng(lo[1], lo[2]) if lo[1] else "NONE")
+        + cell(X2, 226, "ACTIVE DAYS", str(S["active"]), "days", "OF %d DAYS CHARTED" % S["ndays"])
+        + cell(X, 352, "BUSIEST DAY", str(S["busiest"][0]), "in a day", fmt(S["busiest"][1]))
+        + cell(X2, 352, "BUSIEST WEEKDAY", S["weekday"][0], "", "%d IN ALL" % S["weekday"][1])
+        + '<path d="M%d 448H1240" stroke="%s"/>' % (X, HAIR)
+        + mono(X, 478, "MAGNITUDE", 20, DIM, ls=1.2))
     lx = 920
     for c, lab in ((1, "1"), (5, "5"), (15, "15+")):
         r = star_radius(c, cap)
-        right += '<circle cx="%d" cy="489" r="%s" fill="%s"/>' % (lx, n(r), CREAM)
-        right += mono(lx + 14, 496, lab, 20, CREAM)
+        right += '<circle cx="%d" cy="471" r="%s" fill="%s"/>' % (lx, n(r), CREAM)
+        right += mono(lx + 14, 478, lab, 20, CREAM)
         lx += 14 + 12 * len(lab) + 26
-    right += mono(X, 526, "REDRAWN NIGHTLY BY A GITHUB ACTION", 20, DIM) + mono(X, 550, "LAST EXPOSURE %s UTC" % last.isoformat(), 20, DIM)
-    left_note = mono(40, 518, "SUN, INNER RING", 18, DIM) + mono(40, 542, "SAT, OUTER RING", 18, DIM)
-    body = ('<g fill="none">%s</g>' % "") + "".join(g) + right + '<path d="M700 40V520" stroke="%s"/>' % HAIR + left_note
+    right += mono(X, 512, "REDRAWN NIGHTLY BY A GITHUB ACTION", 20, DIM) + mono(X, 534, "LAST EXPOSURE %s UTC" % last.isoformat(), 20, DIM)
+    left_note = mono(40, 510, "SUN, INNER RING", 18, DIM) + mono(40, 532, "SAT, OUTER RING", 18, DIM)
+    frame = ('<rect x="5" y="5" width="1270" height="550" rx="10" fill="none" stroke="#d9cdb0" stroke-width="10"/>'
+             '<rect x="10" y="10" width="1260" height="540" rx="4" fill="none" stroke="%s" stroke-width="1.6"/>'
+             '<rect x="15" y="15" width="1250" height="530" rx="2" fill="none" stroke="%s" stroke-width=".6"/>' % (INK, INK))
+    body = frame + "".join(g) + right + '<path d="M700 40V500" stroke="%s"/>' % HAIR + left_note
     return svg(1280, 560, body, "A year of commits, charted",
                "A polar star chart of the last %d weeks of GitHub contributions: each commit day is a star, "
                "%s contributions in total, longest streak %d days, last exposure %s."
-               % (nw, "{:,}".format(S["total"]), lo[0], last.isoformat()), TWINKLE_CSS), S
+               % (nw, "{:,}".format(S["total"]), lo[0], last.isoformat()), motion('@keyframes tw{0%,100%{opacity:1}50%{opacity:.55}}.tw{animation:tw 5s ease-in-out infinite}'), bg=PARCH, border=False), S
 
 
 # ------------------------------------------------------------------ plates --
@@ -530,21 +536,60 @@ def emb_socialspace(a, R):
 
 
 def emb_gem(a, R):
+    """Anime-style VTuber bust: pink hair, cat-ear headset, blinking eyes, lip-sync mouth, pulsing audio ring."""
+    LN, SKIN, HAIR_D, HAIR_L, GREY = "#1a0f14", "#f8e3d2", "#c4437f", "#ffb3d6", "#2a2a2e"
+    ln = 'stroke="%s" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"' % LN
     bars = []
-    N = 72
+    N = 56
     for i in range(N):
-        v = abs(math.sin(i * .5) * .6 + math.sin(i * 1.3 + 1) * .4)
-        ln = 8 + v * 40
-        bars.append('<g transform="rotate(%s)"><rect class="b" style="animation-delay:-%ss" x="-1.5" y="%s" width="3" height="%s" rx="1.5" fill="%s" opacity="%s"/></g>'
-                    % (n(i * 360 / N), n(i * .11 % 2.6), n(-(60 + ln)), n(ln), a, "%.2f" % (.5 + .5 * v)))
-    face_ = ('<circle r="36" fill="none" stroke="%s" stroke-width="2"/>'
-             '<g class="eye"><circle cx="-13" cy="-7" r="4" fill="%s"/><circle cx="13" cy="-7" r="4" fill="%s"/></g>'
-             '<ellipse class="mo" cx="0" cy="14" rx="10" ry="3.2" fill="%s"/>' % (CREAM, a, a, CREAM))
-    return '<circle r="56" fill="none" stroke="%s"/>%s%s' % (HAIR, "".join(bars), face_), \
-        ".b,.mo,.eye{transform-box:fill-box;transform-origin:50% 100%}.mo,.eye{transform-origin:center}" + motion(
-            "@keyframes br{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}.b{animation:br 1.9s ease-in-out infinite}"
-            "@keyframes mo{0%,100%{transform:scaleY(.7)}50%{transform:scaleY(2.6)}}.mo{animation:mo 1.1s ease-in-out infinite}"
-            "@keyframes bl{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}.eye{animation:bl 4.6s infinite}")
+        v = abs(math.sin(i * .55) * .6 + math.sin(i * 1.4 + 1) * .4)
+        l = 5 + v * 20
+        bars.append('<g transform="rotate(%s)"><rect class="b" style="animation-delay:-%ss" x="-1.6" y="%s" width="3.2" height="%s" rx="1.6" fill="%s" opacity="%s"/></g>'
+                    % (n(i * 360 / N), n(i * .13 % 2.4), n(-(110 + l)), n(l), a, "%.2f" % (.35 + .55 * v)))
+
+    def eye(sx):
+        return ('<g transform="translate(%d -4) scale(%d 1)"><g class="eye"><ellipse rx="10.5" ry="13" fill="#fff"/>'
+                '<ellipse cy="1" rx="8" ry="11.2" fill="%s"/><ellipse cy="5" rx="6" ry="5.5" fill="%s" opacity=".9"/>'
+                '<ellipse cy="1" rx="3.6" ry="6" fill="%s"/><circle cx="-3" cy="-4" r="3.4" fill="#fff"/><circle cx="3" cy="5" r="1.7" fill="#fff"/></g>'
+                '<path d="M-12 -7C-7 -15 6 -15 11 -8M11 -8L16 -12" fill="none" stroke="%s" stroke-width="3.2" stroke-linecap="round"/></g>'
+                % (sx * 17, sx, HAIR_D, a, LN, LN))
+    fringe = ("M-46 -22C-52 -64 -22 -82 2 -82C28 -82 52 -62 46 -22C44 -34 40 -44 34 -50C30 -34 22 -28 14 -46"
+              "C10 -30 2 -26 -6 -44C-10 -30 -20 -28 -26 -46C-32 -40 -40 -34 -46 -22Z")
+    body = (
+        '<circle r="106" fill="none" stroke="%s" stroke-dasharray="2 6"/>' % HAIR + "".join(bars)
+        + '<clipPath id="gc"><circle r="108"/></clipPath><g clip-path="url(#gc)"><g class="bob">'
+        '<path d="M0 -88C-40 -88 -62 -60 -60 -20C-60 10 -64 40 -54 68C-44 62 -40 52 -36 42L36 42C40 52 44 62 54 68C64 40 60 10 60 -20C62 -60 40 -88 0 -88Z" fill="%s" %s/>' % (HAIR_D, ln)
+        + '<path d="M-10 28H10V60H-10Z" fill="#e8c8b2" %s/>' % ln
+        + '<path d="M-100 150C-100 96 -52 68 -14 60L0 78L14 60C52 68 100 96 100 150Z" fill="%s" %s/>' % (GREY, ln)
+        + '<path d="M-14 60L0 80L14 60" fill="none" stroke="%s" stroke-width="2.4" stroke-linejoin="round"/>' % CREAM
+        + '<path d="M-9 80L0 76L9 80L0 90Z" fill="%s" %s/>' % (a, ln)
+        + '<path d="M-41 -28C-41 10 -28 38 0 42C28 38 41 10 41 -28C41 -52 20 -62 0 -62C-20 -62 -41 -52 -41 -28Z" fill="%s" %s/>' % (SKIN, ln)
+        + '<ellipse cx="-27" cy="14" rx="7" ry="3.6" fill="%s" opacity=".4"/><ellipse cx="27" cy="14" rx="7" ry="3.6" fill="%s" opacity=".4"/>' % (a, a)
+        + '<path d="M0 12L-1.6 17H1.6" fill="none" stroke="#c99a82" stroke-width="1.3" stroke-linecap="round"/>'
+        + eye(-1) + eye(1)
+        + '<ellipse class="mo" cx="0" cy="27" rx="5.2" ry="2.8" fill="#8a2236" %s/>' % ln.replace('1.6', '1.2')
+        + '<path d="%s" fill="%s" %s/>' % (fringe, a, ln)
+        + '<path d="M-28 -66C-10 -76 12 -76 28 -64" fill="none" stroke="%s" stroke-width="3" stroke-linecap="round" opacity=".7"/>' % HAIR_L
+        + '<path d="M-46 -22C-54 2 -54 26 -44 48C-38 30 -36 8 -37 -14Z" fill="%s" %s/>' % (a, ln)
+        + '<path d="M46 -22C54 2 54 26 44 48C38 30 36 8 37 -14Z" fill="%s" %s/>' % (a, ln)
+        + '<path d="M2 -82C-6 -98 10 -102 12 -92" fill="none" stroke="%s" stroke-width="3.4" stroke-linecap="round"/>' % LN
+        + '<path d="M2 -82C-6 -98 10 -102 12 -92" fill="none" stroke="%s" stroke-width="1.6" stroke-linecap="round"/>' % a
+        # cat-ear headset
+        + '<path d="M-50 -64L-44 -98L-22 -74ZM50 -64L44 -98L22 -74Z" fill="%s" %s/>' % (GREY, ln)
+        + '<path d="M-44 -72L-42 -88L-32 -77ZM44 -72L42 -88L32 -77Z" fill="%s"/>' % a
+        + '<path d="M-55 -28C-60 -90 60 -90 55 -28" fill="none" stroke="%s" stroke-width="6" stroke-linecap="round"/>' % GREY
+        + '<path d="M-55 -28C-60 -90 60 -90 55 -28" fill="none" stroke="%s" stroke-width="1" opacity=".6"/>' % HAIR_L
+        + '<circle cx="-56" cy="-12" r="12" fill="%s" %s/><circle cx="56" cy="-12" r="12" fill="%s" %s/>' % (GREY, ln, GREY, ln)
+        + '<circle cx="-56" cy="-12" r="6" fill="none" stroke="%s" stroke-width="2"/><circle cx="56" cy="-12" r="6" fill="none" stroke="%s" stroke-width="2"/>' % (a, a)
+        + '<path d="M-60 -2C-64 22 -50 40 -26 37" fill="none" stroke="%s" stroke-width="3" stroke-linecap="round"/>' % GREY
+        + '<circle cx="-24" cy="37" r="4" fill="%s" %s/>' % (a, ln)
+        + '</g></g>')
+    return body, (".b,.mo,.eye{transform-box:fill-box}.b{transform-origin:50% 100%}.mo{transform-origin:center}.eye{transform-origin:50% 0%}" + motion(
+        "@keyframes br{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}.b{animation:br 1.9s ease-in-out infinite}"
+        "@keyframes mo{0%,100%{transform:scaleY(.5)}12%{transform:scaleY(1.7)}24%{transform:scaleY(.7)}38%{transform:scaleY(2.1)}"
+        "50%{transform:scaleY(.4)}64%{transform:scaleY(1.5)}78%{transform:scaleY(.6)}90%{transform:scaleY(1.9)}}.mo{animation:mo 1.7s ease-in-out infinite}"
+        "@keyframes bl{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}.eye{animation:bl 4s infinite}"
+        "@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}.bob{animation:bob 3.4s ease-in-out infinite}"))
 
 
 def emb_sre(a, R):
@@ -629,22 +674,22 @@ def emb_fouress(a, R):
 
 
 PLATES = [
-    dict(slug="chatlens", scale=1.0, num="SG 01", name="ChatLens", cls="BROWSER / PRIVACY", accent=TEAL, emb=emb_chatlens,
+    dict(slug="chatlens", scale=1.0, num="SG 01", name="ChatLens", cls="BROWSER / PRIVACY", accent=AMBER, emb=emb_chatlens,
          text="Chat analytics that never leave your browser. A Content-Security-Policy makes the browser refuse every outgoing request.",
          tags="Next.js · TypeScript · SVG charts", alt="ChatLens, a browser-only chat analytics tool, shown as a 24-spoke activity clock"),
-    dict(slug="socialspace", scale=1.3, num="SG 02", name="SocialSpace", cls="REALTIME / WEBRTC", accent=AMBER, emb=emb_socialspace,
+    dict(slug="socialspace", scale=1.3, num="SG 02", name="SocialSpace", cls="REALTIME / WEBRTC", accent=CORAL, emb=emb_socialspace,
          text="A table for two: chat, calls, a shared canvas and watch-together over a small WebSocket relay.",
          tags="Next.js · WebSocket · WebRTC · PWA", alt="SocialSpace, a realtime space for two, shown as a binary star exchanging pulses"),
-    dict(slug="gem-vtuber", scale=1.22, num="SG 03", name="Gem-VTuber", cls="DESKTOP / VOICE", accent=BLUE, emb=emb_gem,
+    dict(slug="gem-vtuber", scale=0.98, num="SG 03", name="Gem-VTuber", cls="DESKTOP / VOICE", accent=PINK, emb=emb_gem,
          text="A desktop companion: a Live2D avatar in a transparent window that talks through the Gemini Live API.",
          tags="Electron · PixiJS · Live2D · WebSocket", alt="Gem-VTuber, a desktop voice companion, shown as an audio ring around a face glyph"),
-    dict(slug="sre-autopilot", scale=1.0, num="SG 04", name="SRE Autopilot", cls="RL ENVIRONMENT", accent=CORAL, emb=emb_sre,
+    dict(slug="sre-autopilot", scale=1.0, num="SG 04", name="SRE Autopilot", cls="RL ENVIRONMENT", accent=TEAL, emb=emb_sre,
          text="Seven microservices, a hidden root cause, noisy telemetry, and an agent on call.",
          tags="Python · FastAPI · OpenEnv · Docker", alt="SRE Autopilot, an incident-response environment, shown as a seven-node service graph with a fault spreading and healing"),
-    dict(slug="appd-lite-net", scale=1.12, num="SG 05", name="AppD-Lite-Net", cls="COMPUTER VISION", accent=WARM, emb=emb_appd,
+    dict(slug="appd-lite-net", scale=1.12, num="SG 05", name="AppD-Lite-Net", cls="COMPUTER VISION", accent=GREEN, emb=emb_appd,
          text="Apple leaf disease detection with a CNN under one million parameters: 99.53% on a held-out test set.",
          tags="TensorFlow · Keras · FastAPI · React", alt="AppD-Lite-Net, apple leaf disease detection, shown as a convolution window scanning a leaf"),
-    dict(slug="fouress-bath", scale=1.08, num="SG 06", name="Fouress Bath", cls="PRODUCTION / SEO", accent=TEAL, emb=emb_fouress,
+    dict(slug="fouress-bath", scale=1.08, num="SG 06", name="Fouress Bath", cls="PRODUCTION / SEO", accent=GOLD, emb=emb_fouress,
          text="The live catalogue site for a sanitaryware retailer, with structured data and technical SEO.",
          tags="Next.js · Tailwind CSS · JSON-LD", alt="Fouress Bath, a live retailer catalogue, shown as a sitemap of pages orbiting a home node"),
 ]
@@ -677,7 +722,7 @@ def plate(p):
         + mono(30, 44, p["num"], 22, a, ls=2)
         + mono(610, 44, p["cls"], 20, DIM, "end", 1)
         + text_path(p["name"], size, 28, 118)
-        + '<text class="s" y="164" font-size="21" fill="#c9cde0">%s</text>' % txt.replace('<tspan x="30"', '<tspan x="30"', 1)
+        + '<text class="s" y="164" font-size="21" fill="#d6d1c4">%s</text>' % txt.replace('<tspan x="30"', '<tspan x="30"', 1)
         + '<g transform="translate(500 208) scale(%s)">%s</g>' % (p["scale"], emb_body)
         + mono(30, 372, p["tags"], 20, DIM)
         + mono(582, 372, "OPEN", 20, a, "end", 1.5)
@@ -702,7 +747,7 @@ def fieldnotes():
             d += [min(seg, w - x), 5]
             x += seg + 5
         col = CORAL if i == 4 else CREAM
-        bars.append('<rect class="rb" style="animation-delay:%ss" x="%d" y="%d" width="%s" height="%d" rx="2" fill="#2f3868" stroke="#414b84"%s/>'
+        bars.append('<rect class="rb" style="animation-delay:%ss" x="%d" y="%d" width="%s" height="%d" rx="2" fill="#3a3835" stroke="#4d4a45"%s/>'
                     % (n(i * .6), SX + 24, y, n(w), RH, ' opacity="0"' if rec else ""))
         dashes.append('<path class="rd" style="animation-delay:%ss" d="M%d %dh%s" stroke="%s" stroke-width="3.4" stroke-linecap="round" '
                       'stroke-dasharray="%s" opacity="%s"/>' % (n(i * .6), SX + 24, y + 6, n(w), col, " ".join(n(v) for v in d), "0.9" if rec else "0"))
@@ -718,9 +763,9 @@ def fieldnotes():
         specks(random.Random(3), 60, 0, 0, 1280, 270, op0=.1, op1=.4)
         + mono(48, 64, "OBSERVATION LOG · SECURITY", 20, CORAL, ls=2)
         + text_path("Field notes:", 66, 46, 146)
-        + text_path("how assistants leak", 52, 48, 208, italic=True, fill="#c9cde0")
+        + text_path("how assistants leak", 52, 48, 208, italic=True, fill="#d6d1c4")
         + mono(48, 244, "FIG. 2 · A SYSTEM PROMPT, REDACTED THEN RECOVERED", 18, DIM)
-        + '<rect x="%d" y="%d" width="%d" height="214" rx="8" fill="#10163a" stroke="%s"/>' % (SX, SY, SW, HAIR)
+        + '<rect x="%d" y="%d" width="%d" height="214" rx="8" fill="#151412" stroke="%s"/>' % (SX, SY, SW, HAIR)
         + "".join(bars) + "".join(dashes)
         + '<g transform="translate(0 %d)"><g class="sc" transform="translate(0 90)"><rect x="%d" y="-11" width="%d" height="22" fill="url(#glow)"/>'
           '<path d="M%d 0H%d" stroke="%s" stroke-width="2"/></g></g>' % (scan_y, SX + 6, SW - 12, SX + 6, SX + SW - 6, CORAL)
