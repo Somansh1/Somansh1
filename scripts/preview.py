@@ -49,10 +49,16 @@ THEMES = {"light": dict(bg="#ffffff", fg="#1f2328", rule="#d1d9e0", link="#0969d
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    body = md(open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()).replace('src="./assets/', 'src="../assets/')
-    body = body.replace("<details>", "<details open>")
+    body = md(open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()).replace('src="./assets/', 'src="../assets/').replace('srcset="./assets/', 'srcset="../assets/')
+    def pick(b, dark):
+        def f(m):
+            src = re.search(r'srcset="([^"]+)"', m.group(0)).group(1)
+            img = re.search(r'<img[^>]*>', m.group(0)).group(0)
+            return re.sub(r'src="[^"]+"', 'src="%s"' % src, img) if dark else img
+        return re.sub(r'<picture>.*?</picture>', f, b, flags=re.S)
     for name, t in list(THEMES.items()) + [("index", THEMES["light"])]:
-        page = "<!doctype html><meta charset=utf-8><style>%s</style><div class=col>%s</div>" % (CSS % t, body)
+        page_body = pick(body, name == "dark")
+        page = "<!doctype html><meta charset=utf-8><style>%s</style><div class=col>%s</div>" % (CSS % t, page_body)
         open(os.path.join(OUT, name + ".html"), "w", encoding="utf-8").write(page)
     base = [CHROME, "--headless=new", "--hide-scrollbars", "--window-size=900,5200"]
     for name in THEMES:

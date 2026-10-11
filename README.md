@@ -4,17 +4,33 @@
   </a>
 </p>
 
-I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2027. I build web and desktop software end to end, and I spend the rest of my time finding out how AI systems fail.
+<p align="center">
+  <img src="./assets/about.svg" alt="Observer's note. I'm a final-year B.Tech CSE (AI &amp; ML) student at UPES, Dehradun, graduating in 2027. I build web and desktop software end to end, and I spend the rest of my time finding out how AI systems fail." width="100%">
+</p>
 
-[Portfolio](https://somansh.in) · [LinkedIn](https://linkedin.com/in/somansh1) · [somansh@somansh.in](mailto:somansh@somansh.in)
+<p align="center">
+  <a href="https://somansh.in"><img src="./assets/link-portfolio.svg" alt="Portfolio: somansh.in" height="34"></a>&nbsp;&nbsp;
+  <a href="https://linkedin.com/in/somansh1"><img src="./assets/link-linkedin.svg" alt="LinkedIn" height="34"></a>&nbsp;&nbsp;
+  <a href="mailto:somansh@somansh.in"><img src="./assets/link-email.svg" alt="Email: somansh@somansh.in" height="34"></a>
+</p>
 
-## A year of commits, charted
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-commits-dark.svg">
+    <img src="./assets/heading-commits-light.svg" alt="A year of commits, charted" width="100%">
+  </picture>
+</p>
 
 <p align="center">
   <img src="./assets/sky.svg" alt="A polar star chart of the last 53 weeks of GitHub activity. Each day with commits is a star, the busiest days carry diffraction spikes, and the numbers beside it give the totals and streaks." width="100%">
 </p>
 
-## Catalogue
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-catalogue-dark.svg">
+    <img src="./assets/heading-catalogue-light.svg" alt="Catalogue. Six objects, each one shipped. Click a plate to open it." width="100%">
+  </picture>
+</p>
 
 <p align="center">
   <a href="https://chatlens.somansh.in/?demo"><img src="./assets/plate-chatlens.svg" alt="SG 01, ChatLens. Chat analytics that never leave your browser." width="49.5%"></a>
@@ -30,7 +46,7 @@ I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2
 </p>
 
 <details>
-<summary>Plain-text catalogue</summary>
+<summary>Catalogue as text</summary>
 
 | Project | What it is | Built with |
 |---|---|---|
@@ -48,16 +64,26 @@ I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2
 </p>
 
 <details>
-<summary>Security research, in words</summary>
+<summary>Security research as text</summary>
 
 - **Red-team audit of a production AI assistant (2025).** Recovered the assistant's full system prompt through a chain of persona jailbreak, metadata probing and chunked extraction, then reported five findings to the vendor with a proposed hardened prompt design.
 - **Prompt-extraction comparison across six consumer assistants (2025).** Ran one family of extraction prompts against Gemini, ChatGPT, Grok, Perplexity, Meta AI and Claude: three returned instruction-like text, two refused, one returned nothing.
 
 </details>
 
-<p align="center"><img src="./assets/divider.svg" alt="" width="100%"></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-logbook-dark.svg">
+    <img src="./assets/heading-logbook-light.svg" alt="Logbook" width="100%">
+  </picture>
+</p>
 
-## Experience
+<p align="center">
+  <img src="./assets/logbook.svg" alt="Logbook. June to August 2025: AI/ML and Software Engineering Intern at Bharat Electronics Limited. Built a FAISS-backed retrieval pipeline on Llama 3.2 Vision over 100+ page internal documents, taking lookups for 50+ staff from hours to under 10 seconds. Scripted RHEL 9 environment setup, cutting per-machine provisioning from 3 hours to 15 minutes. Shipped a one-click installer so non-technical staff could set the system up on-prem. March 2026 to present: Secretary, IEEE Computer Society (UPES)." width="100%">
+</p>
+
+<details>
+<summary>Experience as text</summary>
 
 **AI/ML & Software Engineering Intern, Bharat Electronics Limited** · Jun to Aug 2025
 
@@ -67,52 +93,73 @@ I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2
 
 **Secretary, IEEE Computer Society (UPES)** · Mar 2026 to present
 
-<!-- chess:start -->
-## Your move
-
-This board is live. Pick a move below; it opens a pre-filled issue, and a GitHub Action plays it and redraws the board in about a minute.
-
-<p align="center">
-  <img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game 1, move 1, white to move">
-</p>
-
-Anyone can move for whichever side is to play. Right now it is white's turn.
-
-<details open><summary>Legal moves for white (20)</summary>
-
-| From | Moves |
-| --- | --- |
-| Pawn a2 | [a3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [a4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn b2 | [b3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [b4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn c2 | [c3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [c4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn d2 | [d3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [d4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn e2 | [e3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [e4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn f2 | [f3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [f4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn g2 | [g3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [g4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn h2 | [h3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [h4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Knight b1 | [Na3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nc3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Knight g1 | [Nf3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nh3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-
 </details>
 
+<!-- chess:start -->
 <p align="center">
-  <img src="./assets/chess-history.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/heading-your-move-dark.svg"><img src="./assets/heading-your-move-light.svg" alt="Your move. This chess board is live: click a move below, press Create on the issue that opens, and the board redraws in about a minute." width="100%"></picture>
 </p>
 
-<details><summary>Recent moves</summary>
+<p align="center">
+<img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game 1, move 1, white to move">
+</p>
+
+<p align="left">
+<img src="./assets/chess/p-w-n-b1.svg" height="30" alt="White knight on b1:"> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Na3.svg" height="30" alt="Play Na3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Nc3.svg" height="30" alt="Play Nc3"></a><br>
+<img src="./assets/chess/p-w-n-g1.svg" height="30" alt="White knight on g1:"> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Nf3.svg" height="30" alt="Play Nf3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Nh3.svg" height="30" alt="Play Nh3"></a><br>
+<img src="./assets/chess/p-w-pawns.svg" height="30" alt="White pawns:"> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-a3.svg" height="30" alt="Play a3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-a4.svg" height="30" alt="Play a4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-b3.svg" height="30" alt="Play b3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-b4.svg" height="30" alt="Play b4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-c3.svg" height="30" alt="Play c3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-c4.svg" height="30" alt="Play c4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-d3.svg" height="30" alt="Play d3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-d4.svg" height="30" alt="Play d4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-e3.svg" height="30" alt="Play e3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-e4.svg" height="30" alt="Play e4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-f3.svg" height="30" alt="Play f3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-f4.svg" height="30" alt="Play f4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-g3.svg" height="30" alt="Play g3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-g4.svg" height="30" alt="Play g4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-h3.svg" height="30" alt="Play h3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-h4.svg" height="30" alt="Play h4"></a><br>
+</p>
+
+<p align="center">
+<img src="./assets/chess-history.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
+</p>
+
+<details><summary>Moves as text</summary>
+
+Legal moves for white (20):
+
+- Pawn a2: [a3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [a4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn b2: [b3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [b4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn c2: [c3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [c4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn d2: [d3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [d4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn e2: [e3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [e4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn f2: [f3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [f4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn g2: [g3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [g4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn h2: [h3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [h4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Knight b1: [Na3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nc3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Knight g1: [Nf3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nh3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+
+Recent moves:
 
 - No moves yet in this game.
 
 </details>
 <!-- chess:end -->
 
-## Toolbox
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-instruments-dark.svg">
+    <img src="./assets/heading-instruments-light.svg" alt="Instruments" width="100%">
+  </picture>
+</p>
+
+<p align="center">
+  <img src="./assets/instruments.svg" alt="Instruments. Languages: Python, TypeScript / JavaScript, Java, C / C++, SQL. Web: React, Next.js, Tailwind CSS, Node.js, WebSocket, WebRTC. AI / ML: RAG pipelines, FAISS, LLM fine-tuning, PyTorch, TensorFlow, scikit-learn. Systems: Linux (RHEL), Docker, Bash, Electron, Git." width="100%">
+</p>
+
+<details>
+<summary>Toolbox as text</summary>
 
 **Languages** Python · TypeScript / JavaScript · Java · C / C++ · SQL<br>
 **Web** React · Next.js · Tailwind CSS · Node.js · WebSocket · WebRTC<br>
 **AI / ML** RAG pipelines · FAISS · LLM fine-tuning · PyTorch · TensorFlow · scikit-learn<br>
 **Systems** Linux (RHEL) · Docker · Bash · Electron · Git
 
-Away from the keyboard: astrophotography, chess, and games.
+</details>
 
-<sub><i>Every image on this page is hand-written SVG generated by scripts/build.py, the star chart is redrawn nightly from real contribution data, and no third-party widgets are used.</i></sub>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/colophon-dark.svg">
+    <img src="./assets/colophon-light.svg" alt="Away from the keyboard: astrophotography, chess, and games. Every image here is hand-written SVG from scripts/build.py. Star chart redrawn nightly. No third-party widgets." width="100%">
+  </picture>
+</p>

@@ -165,6 +165,8 @@ def face(kind):
         d = os.path.join(ROOT, "fonts")
         FONTS["r"] = Face(os.path.join(d, "Fraunces-var.ttf"), dict(wght=440, opsz=110, SOFT=0, WONK=0))
         FONTS["i"] = Face(os.path.join(d, "Fraunces-Italic-var.ttf"), dict(wght=360, opsz=40, SOFT=0, WONK=1))
+        FONTS["rb"] = Face(os.path.join(d, "Fraunces-var.ttf"), dict(wght=400, opsz=22, SOFT=0, WONK=0))
+        FONTS["ib"] = Face(os.path.join(d, "Fraunces-Italic-var.ttf"), dict(wght=380, opsz=24, SOFT=0, WONK=0))
     return FONTS[kind]
 
 
@@ -185,6 +187,10 @@ def motion(css):
     return "@media (prefers-reduced-motion:no-preference){%s}" % css
 
 
+def esc(t):
+    return t.replace('&', '&amp;').replace('<', '&lt;')
+
+
 def svg(w, h, body, title, desc, css="", defs="", bg="url(#sky)", border=True):
     sky = ('<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s"/>'
            '<stop offset="1" stop-color="%s"/></linearGradient>' % (SKY0, SKY1))
@@ -195,7 +201,7 @@ def svg(w, h, body, title, desc, css="", defs="", bg="url(#sky)", border=True):
             'aria-labelledby="t d"><title id="t">%s</title><desc id="d">%s</desc><defs>%s'
             '<clipPath id="rr"><rect width="%d" height="%d" rx="14"/></clipPath><style>%s</style></defs>'
             '<g clip-path="url(#rr)">%s%s</g>%s</svg>\n'
-            % (w, h, w, h, title, desc, sky + defs, w, h, BASE_CSS + css, back, body, frame))
+            % (w, h, w, h, esc(title), esc(desc), sky + defs, w, h, BASE_CSS + css, back, body, frame))
 
 
 def mono(x, y, s, size=20, fill=DIM, anchor="start", ls=0, extra=""):
@@ -778,12 +784,174 @@ def fieldnotes():
                "and a comparison of six consumer assistants.", css, defs)
 
 
-def divider():
-    body = ('<path d="M0 20H600M680 20H1280" stroke="%s" fill="none" opacity=".55"/>' % DIM
-            + star4(640, 20, 13, DIM, .14)
-            + '<g fill="%s" opacity=".7"><circle cx="606" cy="20" r="1.4"/><circle cx="674" cy="20" r="1.4"/>'
-              '<circle cx="580" cy="14" r="1"/><circle cx="702" cy="27" r="1"/><circle cx="560" cy="25" r=".8"/><circle cx="724" cy="13" r=".8"/></g>' % DIM)
-    return svg(1280, 40, body, "Divider", "A thin line with a small four-point star.", bg=None, border=False)
+# ------------------------------------------------------------ typeset text --
+class Type:
+    """Running text as <use> of shared glyph outlines (deduped per SVG)."""
+
+    def __init__(self):
+        self.defs = {}
+
+    def adv(self, ch, size, kind):
+        f = face(kind)
+        g = f.cmap.get(ord(ch))
+        return f.hmtx[g][0] * size / f.upm if g else size * .3
+
+    def width(self, s, size, kind="rb"):
+        return sum(self.adv(c, size, kind) for c in s)
+
+    def draw(self, s, size, x, y, kind="rb", fill=CREAM):
+        f = face(kind)
+        out, cx = [], x
+        for ch in s:
+            g = f.cmap.get(ord(ch))
+            if g and ch != " ":
+                gid = "%s%s_%x" % (kind, n(size).replace(".", "p"), ord(ch))
+                if gid not in self.defs:
+                    from fontTools.pens.svgPathPen import SVGPathPen
+                    from fontTools.pens.transformPen import TransformPen
+                    pen = SVGPathPen(f.gs, ntos=n)
+                    k = size / f.upm
+                    f.gs[g].draw(TransformPen(pen, (k, 0, 0, -k, 0, 0)))
+                    self.defs[gid] = pen.getCommands()
+                out.append('<use href="#%s" x="%s" y="%s"/>' % (gid, n(cx), n(y)))
+            cx += self.adv(ch, size, kind)
+        return '<g fill="%s">%s</g>' % (fill, "".join(out)), cx - x
+
+    def para(self, text, size, x, y, maxw, kind="rb", fill=CREAM, lh=1.45):
+        """Returns (markup, baseline of last line, line count)."""
+        lines, cur = [], ""
+        for w in text.split(" "):
+            t = (cur + " " + w) if cur else w
+            if cur and self.width(t, size, kind) > maxw:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = t
+        lines.append(cur)
+        out = [self.draw(l, size, x, y + i * size * lh, kind, fill)[0] for i, l in enumerate(lines)]
+        return "".join(out), y + (len(lines) - 1) * size * lh, len(lines)
+
+    def defs_markup(self):
+        return "".join('<path id="%s" d="%s"/>' % kv for kv in self.defs.items())
+
+
+# ------------------------------------------------------------- new panels --
+def heading(title, kicker, sub, dark):
+    T = Type()
+    ink, kc, subc, rule = (CREAM, DIM, "#d6d1c4", "#3a3835") if dark else (INK, INKDIM, INKDIM, "#cfc3aa")
+    body = mono(4, 26, kicker, 20, kc, ls=2.4) + text_path(title, 56, 2, 84, fill=ink, track=1.6)
+    bottom = 84
+    if sub:
+        m, bottom, _ = T.para(sub, 26, 4, 122, 1200, "ib", subc, 1.35)
+        body += m
+    ly = bottom + 26
+    body += ('<path d="M0 %s H1228M1252 %s H1280" stroke="%s" fill="none"/>' % (n(ly), n(ly), rule)
+             + star4(1240, ly, 9, ink, .16))
+    h = int(ly + 14)
+    return svg(1280, h, body, title, "%s. %s" % (kicker.title(), sub or title), "", T.defs_markup(), bg=None, border=False)
+
+
+def about():
+    T = Type()
+    txt = ("I'm a final-year B.Tech CSE (AI & ML) student at UPES, Dehradun, graduating in 2027. I build web and desktop "
+           "software end to end, and I spend the rest of my time finding out how AI systems fail.")
+    m, last, _ = T.para(txt, 32, 56, 116, 1120, "rb", CREAM, 1.5)
+    h = int(last + 52)
+    body = (specks(random.Random(41), 40, 0, 0, 1280, h, op0=.1, op1=.4)
+            + mono(56, 58, "OBSERVER'S NOTE", 20, AMBER, ls=3)
+            + star4(1214, 52, 12, AMBER, .15) + m)
+    return svg(1280, h, body, "Observer's note", txt, "", T.defs_markup())
+
+
+def link(label):
+    w = int(28 + len(label) * 13.2 + 14 + 18 + 28)
+    body = ('<rect x=".75" y=".75" width="%d" height="54.5" rx="27.25" fill="#151517" stroke="#3a3835" stroke-width="1.5"/>' % (w - 1.5)
+            + mono(28, 35, label, 22, CREAM, extra=' font-weight="700"')
+            + '<path d="M%s 38L%s 24M%s 24H%s V34" stroke="%s" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+            % (n(w - 46), n(w - 32), n(w - 42), n(w - 32), AMBER))
+    return svg(w, 56, body, label, "Link: %s" % label, bg=None, border=False)
+
+
+def logbook():
+    T = Type()
+    bullets = ["Built a FAISS-backed retrieval pipeline on Llama 3.2 Vision over 100+ page internal documents, taking lookups for 50+ staff from hours to under 10 seconds.",
+               "Scripted RHEL 9 environment setup, cutting per-machine provisioning from 3 hours to 15 minutes.",
+               "Shipped a one-click installer so non-technical staff could set the system up on-prem."]
+    entries = [("JUN 2025", "TO AUG 2025", "AI/ML & Software Engineering Intern", "Bharat Electronics Limited", bullets),
+               ("MAR 2026", "TO PRESENT", "Secretary", "IEEE Computer Society (UPES)", [])]
+    body, y, X = [], 58, 330
+    for k, (d1, d2, role, org, bl) in enumerate(entries):
+        y0 = y
+        body.append(mono(56, y0 + 20, d1, 20, INKDIM, ls=1) + mono(56, y0 + 46, d2, 20, INKDIM, ls=1))
+        body.append(T.draw(role, 36, X, y0 + 36, "r", INK)[0])
+        body.append(T.draw(org, 28, X, y0 + 76, "ib", "#4a3b2c")[0])
+        by = y0 + 76
+        for b in bl:
+            m, by, _ = T.para(b, 24, X + 28, by + 46, 1280 - X - 28 - 70, "rb", INK, 1.45)
+            first = by - (_ - 1) * 24 * 1.45
+            body.append(m + star4(X + 8, first - 8, 6.5, INK, .2))
+        end = by + 26
+        body.append('<path d="M300 %sV%s" stroke="%s"/>' % (n(y0 - 4), n(end), RULE))
+        if k == 0:
+            body.append('<path d="M56 %sH1224" stroke="%s"/>' % (n(end + 24), RULE))
+        y = end + 24 + 46
+    h = int(y - 46 + 56)
+    frame = ('<rect x="5" y="5" width="1270" height="%d" rx="10" fill="none" stroke="#d9cdb0" stroke-width="10"/>'
+             '<rect x="10" y="10" width="1260" height="%d" rx="4" fill="none" stroke="%s" stroke-width="1.6"/>'
+             '<rect x="15" y="15" width="1250" height="%d" rx="2" fill="none" stroke="%s" stroke-width=".6"/>'
+             % (h - 10, h - 20, INK, h - 30, INK))
+    alt = " ".join("%s %s. %s, %s. %s" % (e[0], e[1].title(), e[2], e[3], " ".join(e[4])) for e in entries)
+    return svg(1280, h, frame + "".join(body), "Logbook: experience", alt, "", T.defs_markup(), bg=PARCH, border=False)
+
+
+def instruments():
+    T = Type()
+    rows = [("LANGUAGES", AMBER, ["Python", "TypeScript / JavaScript", "Java", "C / C++", "SQL"]),
+            ("WEB", CORAL, ["React", "Next.js", "Tailwind CSS", "Node.js", "WebSocket", "WebRTC"]),
+            ("AI / ML", TEAL, ["RAG pipelines", "FAISS", "LLM fine-tuning", "PyTorch", "TensorFlow", "scikit-learn"]),
+            ("SYSTEMS", GREEN, ["Linux (RHEL)", "Docker", "Bash", "Electron", "Git"])]
+    body, y, X, MAXW = [], 40, 300, 940
+    for k, (lab, col, items) in enumerate(rows):
+        base = y + 30
+        body.append('<circle cx="62" cy="%s" r="4" fill="%s"/>' % (n(base - 7), col) + mono(80, base, lab, 20, col, ls=2.5))
+        cx = X
+        for j, it in enumerate(items):
+            w = T.width(it, 26, "rb")
+            if cx + w > X + MAXW:
+                cx, base = X, base + 44
+            body.append(T.draw(it, 26, cx, base, "rb", CREAM)[0])
+            cx += w
+            if j < len(items) - 1:
+                body.append('<circle cx="%s" cy="%s" r="2.6" fill="%s"/>' % (n(cx + 18), n(base - 8), col))
+                cx += 36
+        y = base + 24
+        if k < len(rows) - 1:
+            body.append('<path d="M56 %sH1224" stroke="%s"/>' % (n(y), HAIR))
+            y += 22
+    h = int(y + 18)
+    alt = " ".join("%s: %s." % (r[0].title(), ", ".join(r[2])) for r in rows)
+    return svg(1280, h, specks(random.Random(77), 40, 0, 0, 1280, h, op0=.1, op1=.4) + "".join(body),
+               "Instruments: toolbox", alt, "", T.defs_markup())
+
+
+def colophon(dark):
+    T = Type()
+    ink, dim = (("#d6d1c4", DIM) if dark else (INK, INKDIM))
+    line = "Away from the keyboard: astrophotography, chess, and games."
+    m = T.draw(line, 34, 640 - T.width(line, 34, "ib") / 2, 52, "ib", ink)[0]
+    body = (m + mono(640, 98, "EVERY IMAGE HERE IS HAND-WRITTEN SVG FROM scripts/build.py", 20, dim, "middle", .5)
+            + mono(640, 126, "STAR CHART REDRAWN NIGHTLY · NO THIRD-PARTY WIDGETS", 20, dim, "middle", .5))
+    return svg(1280, 150, body, "Colophon",
+               line + " Every image here is hand-written SVG from scripts/build.py. "
+               "Star chart redrawn nightly. No third-party widgets.", "", T.defs_markup(), bg=None, border=False)
+
+
+HEADINGS = [("commits", "A year of commits, charted", "PLATE I · ACTIVITY", ""),
+            ("catalogue", "Catalogue", "PLATE II · WORK", "Six objects, each one shipped. Click a plate to open it."),
+            ("logbook", "Logbook", "PLATE IV · EXPERIENCE", ""),
+            ("instruments", "Instruments", "PLATE V · TOOLBOX", ""),
+            ("your-move", "Your move", "PLATE VI · CHESS",
+             "This board is live. Click a move, press Create on the issue that opens, and the board redraws in about a minute.")]
 
 
 # -------------------------------------------------------------------- main --
@@ -810,7 +978,17 @@ def main():
     for p in PLATES:
         write("plate-%s.svg" % p["slug"], plate(p))
     write("fieldnotes.svg", fieldnotes())
-    write("divider.svg", divider())
+    for slug, title, kicker, sub in HEADINGS:
+        for dark in (True, False):
+            write("heading-%s-%s.svg" % (slug, "dark" if dark else "light"), heading(title, kicker, sub, dark))
+    write("about.svg", about())
+    for slug, label in (("portfolio", "somansh.in"), ("linkedin", "LinkedIn"), ("email", "somansh@somansh.in")):
+        write("link-%s.svg" % slug, link(label))
+    write("logbook.svg", logbook())
+    write("instruments.svg", instruments())
+    for dark in (True, False):
+        write("colophon-%s.svg" % ("dark" if dark else "light"), colophon(dark))
+
 
 
 if __name__ == "__main__":

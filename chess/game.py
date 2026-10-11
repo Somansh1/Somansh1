@@ -349,30 +349,101 @@ def history_alt(state):
             f"Most recent: game {len(hist)}, {how}{why}.")
 
 
+ORDER = {chess.KING: 0, chess.QUEEN: 1, chess.ROOK: 2, chess.BISHOP: 3, chess.KNIGHT: 4}
+PNAME = {1: "pawn", 2: "knight", 3: "bishop", 4: "rook", 5: "queen", 6: "king"}
+
+
+def tok(san):
+    """Filename-safe token for a SAN. Uppercase B gets a dash so Bxc3 and bxc3 differ on case-insensitive disks."""
+    t = san.replace("+", "-check").replace("#", "-mate").replace("=", "-eq")
+    return "B-" + t[1:] if t[0] == "B" else t
+
+
+def pill(w, border, body):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="56" viewBox="0 0 {w} 56">\n'
+            f'{body}\n</svg>\n')
+
+
+def button_svg(san):
+    """Pure function of the SAN string (GitHub caches images by URL)."""
+    w = max(88, round(len(san) * 14.5 + 44))
+    border = AMBER if san[-1] in "+#" else CORAL if "x" in san else "#3a3835"
+    return pill(w, border,
+                f'<rect x=".75" y=".75" width="{w-1.5}" height="54.5" rx="27.25" fill="#151517" stroke="{border}" stroke-width="1.5"/>\n'
+                f'<text x="{w/2}" y="36" text-anchor="middle" font-family="{MONO}" font-size="24" font-weight="bold" fill="{CREAM}">{escape(san)}</text>')
+
+
+def chip_svg(sym, label):
+    w = 148  # fixed so the buttons line up in a column
+    k = 40 / 45
+    return pill(w, "",
+                f'<rect x=".75" y=".75" width="{w-1.5}" height="54.5" rx="27.25" fill="{LIGHT_SQ}" stroke="{DARK_SQ}" stroke-width="1.5"/>\n'
+                f'<g transform="translate(12 8) scale({k:.4f})">{piece_svg(sym, k, 1.2, 1.2)}</g>\n'
+                f'<text x="58" y="36" font-family="{MONO}" font-size="24" font-weight="bold" fill="{W_LINE}">{escape(label)}</text>')
+
+
+def picker(state, b):
+    """Returns (html lines, {relpath: svg content})."""
+    files, lines = {}, []
+    col = "w" if b.turn else "b"
+    groups, pawns = {}, []
+    for mv in b.legal_moves:
+        if b.piece_type_at(mv.from_square) == chess.PAWN:
+            pawns.append(mv)
+        else:
+            groups.setdefault(mv.from_square, []).append(mv)
+
+    def row(chip_name, chip_sym, label, alt, moves):
+        files[f"assets/chess/{chip_name}.svg"] = chip_svg(chip_sym, label)
+        cells = [f'<img src="./assets/chess/{chip_name}.svg" height="30" alt="{alt}">']
+        for m in moves:
+            san = b.san(m)
+            files[f"assets/chess/m-{tok(san)}.svg"] = button_svg(san)
+            href = move_link(state, san, m.uci())[len(san) + 3:-1]
+            cells.append(f'<a href="{href}"><img src="./assets/chess/m-{tok(san)}.svg" height="30" alt="Play {escape(san)}"></a>')
+        lines.append(" ".join(cells) + "<br>")
+
+    cname = "White" if b.turn else "Black"
+    for sq in sorted(groups, key=lambda s: (ORDER[b.piece_type_at(s)], s)):
+        pt = b.piece_type_at(sq)
+        n = chess.square_name(sq)
+        row(f"p-{col}-{chess.piece_symbol(pt)}-{n}", chess.Piece(pt, b.turn).symbol(), n,
+            f"{cname} {PNAME[pt]} on {n}:", sorted(groups[sq], key=lambda m: m.uci()))
+    if pawns:
+        row(f"p-{col}-pawns", chess.Piece(chess.PAWN, b.turn).symbol(), "PAWNS", f"{cname} pawns:",
+            sorted(pawns, key=lambda m: (chess.square_file(m.from_square), m.uci())))
+    return lines, files
+
+
 def render_fragment(state):
+    return fragment_and_files(state)[0]
+
+
+def fragment_and_files(state):
     b = board_of(state)
     side = "white" if b.turn else "black"
     last = f", last move {state['moves'][-1]['san']}" if state["moves"] else ""
+    pick, files = picker(state, b)
+    lines = ['<p align="center">',
+             '<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/heading-your-move-dark.svg">'
+             '<img src="./assets/heading-your-move-light.svg" alt="Your move. This chess board is live: click a move below, press Create on the issue that opens, and the board redraws in about a minute." width="100%"></picture>',
+             "</p>", "",
+             '<p align="center">',
+             f'<img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game {state["game"]}, move {b.fullmove_number}, {side} to move{last}">',
+             "</p>", "",
+             '<p align="left">', *pick, "</p>", "",
+             '<p align="center">',
+             f'<img src="./assets/chess-history.svg" width="100%" alt="{escape(history_alt(state), quote=True)}">',
+             "</p>", "",
+             "<details><summary>Moves as text</summary>", "",
+             f"Legal moves for {side} ({b.legal_moves.count()}):", ""]
     rows = {}
     for mv in b.legal_moves:
         rows.setdefault(mv.from_square, []).append(mv)
-    lines = ["## Your move", "",
-             "This board is live. Pick a move below; it opens a pre-filled issue, and a GitHub Action plays it and redraws the board in about a minute.", "",
-             '<p align="center">',
-             f'  <img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game {state["game"]}, move {b.fullmove_number}, {side} to move{last}">',
-             "</p>", "",
-             f"Anyone can move for whichever side is to play. Right now it is {side}'s turn.", "",
-             f"<details open><summary>Legal moves for {side} ({b.legal_moves.count()})</summary>", "",
-             "| From | Moves |", "| --- | --- |"]
     for sq in sorted(rows, key=lambda s: (b.piece_type_at(s), s)):
-        name = f"{NAMES[b.piece_type_at(sq)]} {chess.square_name(sq)}"
         links = " ".join(move_link(state, b.san(m), m.uci()) for m in sorted(rows[sq], key=lambda m: m.uci()))
-        lines.append(f"| {name} | {links} |")
-    lines += ["", "</details>", "",
-              '<p align="center">',
-              f'  <img src="./assets/chess-history.svg" width="100%" alt="{escape(history_alt(state), quote=True)}">',
-              "</p>", "",
-              "<details><summary>Recent moves</summary>", ""]
+        lines.append(f"- {NAMES[b.piece_type_at(sq)]} {chess.square_name(sq)}: {links}")
+    lines += ["", "Recent moves:", ""]
     n = len(state["moves"])
     for i in range(max(0, n - 8), n):
         m = state["moves"][i]
@@ -381,14 +452,17 @@ def render_fragment(state):
     if not n:
         lines.append("- No moves yet in this game.")
     lines += ["", "</details>"]
-    return "\n".join(lines) + "\n"
-
+    return "\n".join(lines) + "\n", files
 
 def render(state=None):
     state = state or load()
     write(SVG, render_svg(state))
     write(HIST_SVG, render_history(state))
-    frag = render_fragment(state)
+    frag, files = fragment_and_files(state)
+    for rel, svg in files.items():
+        p = ROOT / rel
+        if not p.exists() or p.read_text(encoding='utf-8') != svg:
+            write(p, svg)
     write(FRAGMENT, frag)
     if README.exists():
         with open(README, encoding="utf-8", newline="") as f:
@@ -502,13 +576,23 @@ def check():
     for fen in (chess.STARTING_FEN, "8/P6k/8/8/8/8/8/K7 w - - 0 1", "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1"):
         s = new_state(); s["fen"] = fen
         n = chess.Board(fen).legal_moves.count()
-        assert render_fragment(s).count("issues/new?title=chess%7Cmove%7C") == n, fen
-        assert render_fragment(s) == render_fragment(s) and render_svg(s) == render_svg(s)
-        assert render_history(s) == render_history(s)
+        fr = render_fragment(s)
+        assert len(re.findall(r'<a href="[^"]*chess%7Cmove%7C[^"]*"><img src="\./assets/chess/m-[^"]+" height="30" alt="Play ', fr)) == n, fen
+        assert len(re.findall(r"\[[^\]]+\]\(https://[^)]*chess%7Cmove%7C", fr)) == n, fen
+        assert fr.count("issues/new?title=chess%7Cmove%7C") == 2 * n
+        assert "<table" not in fr and "|" not in re.sub(r"<details>.*?</details>", "", fr, flags=re.S).replace("%7C", "")
+        assert fr == render_fragment(s) and render_svg(s) == render_svg(s) and render_history(s) == render_history(s)
+        st.write_text(json.dumps(s))
+        assert run("render").returncode == 0
+        for ref in set(re.findall(r'\./(assets/chess/[^"]+\.svg)', fr)):
+            assert (tmp / ref).exists(), ref
+    assert button_svg("Nf3") == button_svg("Nf3") != button_svg("Nxf3")
+    assert 'stroke="#ff5a45"' in button_svg("Nxf3") and 'stroke="#ffd43b"' in button_svg("Qh5+") and 'stroke="#ffd43b"' in button_svg("Qh4#")
+    assert {tok("O-O"), tok("Bxc3"), tok("bxc3"), tok("e8=Q+")} == {"O-O", "B-xc3", "bxc3", "e8-eqQ-check"}
     (tmp / "README.md").write_text("a\n<!-- chess:start -->\nold\n<!-- chess:end -->\nz\n")
     assert run("render").returncode == 0
     t = (tmp / "README.md").read_text()
-    assert "old" not in t and t.startswith("a\n") and t.endswith("\nz\n") and "## Your move" in t
+    assert "old" not in t and t.startswith("a\n") and t.endswith("\nz\n") and "heading-your-move" in t
     assert (tmp / "assets" / "chess-history.svg").exists()
     shutil.rmtree(tmp)
     print("chess check: ok")

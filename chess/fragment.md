@@ -1,35 +1,37 @@
-## Your move
-
-This board is live. Pick a move below; it opens a pre-filled issue, and a GitHub Action plays it and redraws the board in about a minute.
-
 <p align="center">
-  <img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game 1, move 1, white to move">
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/heading-your-move-dark.svg"><img src="./assets/heading-your-move-light.svg" alt="Your move. This chess board is live: click a move below, press Create on the issue that opens, and the board redraws in about a minute." width="100%"></picture>
 </p>
 
-Anyone can move for whichever side is to play. Right now it is white's turn.
-
-<details open><summary>Legal moves for white (20)</summary>
-
-| From | Moves |
-| --- | --- |
-| Pawn a2 | [a3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [a4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn b2 | [b3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [b4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn c2 | [c3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [c4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn d2 | [d3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [d4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn e2 | [e3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [e4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn f2 | [f3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [f4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn g2 | [g3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [g4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Pawn h2 | [h3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [h4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Knight b1 | [Na3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nc3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-| Knight g1 | [Nf3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nh3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) |
-
-</details>
-
 <p align="center">
-  <img src="./assets/chess-history.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
+<img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game 1, move 1, white to move">
 </p>
 
-<details><summary>Recent moves</summary>
+<p align="left">
+<img src="./assets/chess/p-w-n-b1.svg" height="30" alt="White knight on b1:"> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Na3.svg" height="30" alt="Play Na3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Nc3.svg" height="30" alt="Play Nc3"></a><br>
+<img src="./assets/chess/p-w-n-g1.svg" height="30" alt="White knight on g1:"> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Nf3.svg" height="30" alt="Play Nf3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-Nh3.svg" height="30" alt="Play Nh3"></a><br>
+<img src="./assets/chess/p-w-pawns.svg" height="30" alt="White pawns:"> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-a3.svg" height="30" alt="Play a3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-a4.svg" height="30" alt="Play a4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-b3.svg" height="30" alt="Play b3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-b4.svg" height="30" alt="Play b4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-c3.svg" height="30" alt="Play c3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-c4.svg" height="30" alt="Play c4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-d3.svg" height="30" alt="Play d3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-d4.svg" height="30" alt="Play d4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-e3.svg" height="30" alt="Play e3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-e4.svg" height="30" alt="Play e4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-f3.svg" height="30" alt="Play f3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-f4.svg" height="30" alt="Play f4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-g3.svg" height="30" alt="Play g3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-g4.svg" height="30" alt="Play g4"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-h3.svg" height="30" alt="Play h3"></a> <a href="https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute."><img src="./assets/chess/m-h4.svg" height="30" alt="Play h4"></a><br>
+</p>
+
+<p align="center">
+<img src="./assets/chess-history.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
+</p>
+
+<details><summary>Moves as text</summary>
+
+Legal moves for white (20):
+
+- Pawn a2: [a3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [a4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ca2a4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn b2: [b3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [b4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb2b4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn c2: [c3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [c4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cc2c4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn d2: [d3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [d4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cd2d4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn e2: [e3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [e4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ce2e4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn f2: [f3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [f4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cf2f4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn g2: [g3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [g4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg2g4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Pawn h2: [h3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [h4](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Ch2h4%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Knight b1: [Na3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1a3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nc3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cb1c3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+- Knight g1: [Nf3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1f3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.) [Nh3](https://github.com/Somansh1/Somansh1/issues/new?title=chess%7Cmove%7Cg1h3%7C1&body=Just+press+%22Create%22.+The+board+updates+in+about+a+minute.)
+
+Recent moves:
 
 - No moves yet in this game.
 
