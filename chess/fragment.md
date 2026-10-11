@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game 1, move 2, black to move, last move Nf3">
+<img src="./assets/chess/board-g1-m3.svg" width="100%" alt="Chess board with the move list, game 1, move 2, black to move, last move Nf3">
 </p>
 
 <p align="left">
@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-<img src="./assets/chess-history.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
+<img src="./assets/chess/history-0.svg" width="100%" alt="No finished chess games yet. Game 1 is in progress.">
 </p>
 
 <details><summary>Moves as text</summary>

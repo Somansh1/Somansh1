@@ -18,8 +18,13 @@ import chess.svg
 ROOT = Path(os.environ.get("CHESS_ROOT") or Path(__file__).resolve().parent.parent)
 STATE = ROOT / "chess" / "state.json"
 FRAGMENT = ROOT / "chess" / "fragment.md"
-SVG = ROOT / "assets" / "chess-board.svg"
-HIST_SVG = ROOT / "assets" / "chess-history.svg"
+# GitHub caches README images by URL for several minutes, so a redrawn board at the same path keeps showing the
+# old position. Each position therefore gets its own file name, and the previous one is deleted.
+def board_rel(state):
+    return f"assets/chess/board-g{state['game']}-m{len(state['moves'])}.svg"
+
+def hist_rel(state):
+    return f"assets/chess/history-{len(state['history'])}.svg"
 README = ROOT / "README.md"
 REPO = "Somansh1/Somansh1"
 MOVE_RE = re.compile(r"[a-h][1-8][a-h][1-8][qrbn]?")
@@ -429,11 +434,11 @@ def fragment_and_files(state):
              '<img src="./assets/heading-your-move-light.svg" alt="Your move. This chess board is live: click a move below, press Create on the issue that opens, and the board redraws in about a minute." width="100%"></picture>',
              "</p>", "",
              '<p align="center">',
-             f'<img src="./assets/chess-board.svg" width="100%" alt="Chess board with the move list, game {state["game"]}, move {b.fullmove_number}, {side} to move{last}">',
+             f'<img src="./{board_rel(state)}" width="100%" alt="Chess board with the move list, game {state["game"]}, move {b.fullmove_number}, {side} to move{last}">',
              "</p>", "",
              '<p align="left">', *pick, "</p>", "",
              '<p align="center">',
-             f'<img src="./assets/chess-history.svg" width="100%" alt="{escape(history_alt(state), quote=True)}">',
+             f'<img src="./{hist_rel(state)}" width="100%" alt="{escape(history_alt(state), quote=True)}">',
              "</p>", "",
              "<details><summary>Moves as text</summary>", "",
              f"Legal moves for {side} ({b.legal_moves.count()}):", ""]
@@ -456,8 +461,13 @@ def fragment_and_files(state):
 
 def render(state=None):
     state = state or load()
-    write(SVG, render_svg(state))
-    write(HIST_SVG, render_history(state))
+    keep = {ROOT / board_rel(state): render_svg(state), ROOT / hist_rel(state): render_history(state)}
+    for old in [*(ROOT / "assets" / "chess").glob("board-*.svg"), *(ROOT / "assets" / "chess").glob("history-*.svg"),
+                ROOT / "assets" / "chess-board.svg", ROOT / "assets" / "chess-history.svg"]:
+        if old not in keep and old.exists():
+            old.unlink()
+    for path, svg in keep.items():
+        write(path, svg)
     frag, files = fragment_and_files(state)
     for rel, svg in files.items():
         p = ROOT / rel
@@ -593,7 +603,7 @@ def check():
     assert run("render").returncode == 0
     t = (tmp / "README.md").read_text()
     assert "old" not in t and t.startswith("a\n") and t.endswith("\nz\n") and "heading-your-move" in t
-    assert (tmp / "assets" / "chess-history.svg").exists()
+    assert len(list((tmp / "assets" / "chess").glob("history-*.svg"))) == 1 and len(list((tmp / "assets" / "chess").glob("board-*.svg"))) == 1
     shutil.rmtree(tmp)
     print("chess check: ok")
 
