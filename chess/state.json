@@ -1,5 +1,5 @@
 {
-  "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+  "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
   "moves": [
     {
       "san": "e4",
@@ -9,6 +9,11 @@
     {
       "san": "e5",
       "uci": "e7e5",
+      "by": "Somansh1"
+    },
+    {
+      "san": "Nf3",
+      "uci": "g1f3",
       "by": "Somansh1"
     }
   ],
