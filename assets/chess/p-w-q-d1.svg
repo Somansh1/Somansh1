@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="56" viewBox="0 0 148 56">
+<rect x=".75" y=".75" width="146.5" height="54.5" rx="27.25" fill="#d8cfb8" stroke="#8a7d66" stroke-width="1.5"/>
+<g transform="translate(12 8) scale(0.8889)"><g id="white-queen" class="white queen" fill="#f7f1e1" fill-rule="evenodd" stroke="#2b2118" stroke-width="1.350" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM24.5 7.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM41 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM16 8.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM33 9a2 2 0 1 1-4 0 2 2 0 1 1 4 0z"/><path d="M9 26c8.5-1.5 21-1.5 27 0l2-12-7 11V11l-5.5 13.5-3-15-3 15-5.5-14V25L7 14l2 12zM9 26c0 2 1.5 2 2.5 4 1 1.5 1 1 .5 3.5-1.5 1-1.5 2.5-1.5 2.5-1.5 1.5.5 2.5.5 2.5 6.5 1 16.5 1 23 0 0 0 1.5-1 0-2.5 0 0 .5-1.5-1-2.5-.5-2.5-.5-2 .5-3.5 1-2 2.5-2 2.5-4-8.5-1.5-18.5-1.5-27 0z" stroke-linecap="butt"/><path d="M11.5 30c3.5-1 18.5-1 22 0M12 33.5c6-1 15-1 21 0" fill="none"/></g></g>
+<text x="58" y="36" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="24" font-weight="bold" fill="#2b2118">d1</text>
+</svg>
