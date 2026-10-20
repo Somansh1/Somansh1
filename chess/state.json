@@ -1,5 +1,5 @@
 {
-  "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+  "fen": "r1bqkbnr/pppp1ppp/2n5/4N3/4P3/8/PPPP1PPP/RNBQKB1R b KQkq - 0 3",
   "moves": [
     {
       "san": "e4",
@@ -20,6 +20,11 @@
       "san": "Nc6",
       "uci": "b8c6",
       "by": "Somansh1"
+    },
+    {
+      "san": "Nxe5",
+      "uci": "f3e5",
+      "by": "shreyamT"
     }
   ],
   "game": 1,
